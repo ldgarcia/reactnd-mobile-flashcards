@@ -2,6 +2,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 import { getNavigationParam } from '../utils/navigation'
 import QuizItem from '../components/QuizItem'
 import QuizResults from '../components/QuizResults'
@@ -21,6 +22,17 @@ class QuizContainer extends React.Component {
     return {
       title: 'Quiz',
     }
+  }
+
+  isCompleted = () => {
+    const { currentCardIndex } = this.state
+    const { deck } = this.props
+    const isCompleted = currentCardIndex === deck.questions.length
+    if (isCompleted) {
+      clearLocalNotification()
+      setLocalNotification()
+    }
+    return isCompleted
   }
 
   handleFlip = () => {
@@ -59,10 +71,9 @@ class QuizContainer extends React.Component {
   }
 
   render() {
-    const { currentCardIndex } = this.state
     const { deck, navigation } = this.props
     const { questions } = deck
-    if (currentCardIndex < questions.length) {
+    if (!this.isCompleted()) {
       return (
         <QuizItem
           onFlip={this.handleFlip}

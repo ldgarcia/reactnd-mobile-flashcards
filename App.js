@@ -4,17 +4,34 @@ import { View } from 'react-native'
 import configureStore from './configureStore'
 import MainNavigator from './components/MainNavigator'
 import StatusBar from './components/StatusBar'
+import { setLocalNotification, getNotificationPermission, listenForNotifications } from './utils/notifications'
 import colors from './utils/colors'
 
-function App() {
-  return (
-    <Provider store={configureStore()}>
-      <View style={{flex: 1}}>
-        <StatusBar backgroundColor={colors.white} />
-        <MainNavigator />
-      </View>
-    </Provider>
-  )
+class App extends React.Component {
+  componentDidMount() {
+    getNotificationPermission()
+    listenForNotifications()
+    setLocalNotification()
+  }
+
+  render() {
+    return (
+      <Provider store={configureStore()}>
+        <View style={{flex: 1}}>
+          <StatusBar backgroundColor={colors.white} />
+          <MainNavigator />
+        </View>
+      </Provider>
+    )
+  }
+
+  listenForNotifications = () => {
+    Notifications.addListener(notification => {
+      if (notification.origin === 'received' && Platform.OS === 'ios') {
+        Alert.alert(notification.title, notification.body);
+      }
+    })
+  }
 }
 
 export default App
