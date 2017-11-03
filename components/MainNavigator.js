@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation'
 import Tabs from './Tabs'
 import Deck from '../containers/Deck'
 import AddCard from '../containers/AddCard'
+import Quiz from '../containers/Quiz'
 
 const MainNavigator = StackNavigator({
   Home: {
@@ -15,6 +16,10 @@ const MainNavigator = StackNavigator({
   AddCard: {
     path: 'add-card/:title',
     screen: AddCard,
+  },
+  Quiz: {
+    path: 'quiz/:title',
+    screen: Quiz,
   }
 })
 
