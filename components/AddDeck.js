@@ -38,25 +38,6 @@ const styles = StyleSheet.create({
     color: colors.darkGray,
     textAlign: 'center',
   },
-  button: {
-    padding: 10,
-    marginTop: 20,
-    borderRadius: 5,
-  },
-  submitButton: {
-    backgroundColor: colors.blue,
-  },
-  disabledSubmitButton: {
-    backgroundColor: colors.gray,
-  },
-  disabledSubmitText: {
-    fontSize: 24,
-    color: colors.darkGray,
-  },
-  submitText: {
-    fontSize: 24,
-    color: colors.white,
-  },
   input: {
     height: 60,
     width: '90%',
