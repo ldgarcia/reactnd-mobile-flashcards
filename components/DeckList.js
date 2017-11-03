@@ -6,15 +6,7 @@ class DeckList extends React.Component {
 
   render() {
     const { decks } = this.props
-    return (
-      <FlatList
-        contentContainerStyle={styles.container}
-        data={decks.sort((a, b) => a.title < b.title)}
-        renderItem={this.renderDeck}
-        keyExtractor={(item, index) => item.title}
-        ListEmptyComponent={this.renderEmpty}
-      />
-    )
+    return decks.length > 0 ? this.renderDecks(decks) : this.renderEmpty()
   }
 
   renderDeck = ({ item }) => {
@@ -37,8 +29,20 @@ class DeckList extends React.Component {
     )
   }
 
+  renderDecks = (decks) => {
+    return (
+      <FlatList
+        contentContainerStyle={{backgroundColor: colors.white}}
+        data={decks.sort((a, b) => a.title < b.title)}
+        renderItem={this.renderDeck}
+        keyExtractor={(item, index) => item.title}
+        ListEmptyComponent={this.renderEmpty}
+      />
+    )
+  }
+
   renderEmpty = () => (
-    <View style={[styles.container, {alignItems: 'center',}]}>
+    <View style={styles.container}>
       <Text style={styles.noDecksText}>
         You have no decks yet
       </Text>
@@ -48,6 +52,9 @@ class DeckList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: colors.white,
   },
   card: {

@@ -18,12 +18,12 @@ class AddDeck extends React.Component {
           placeholder='Enter title'
           value={title}
           onChangeText={onTitleChange}
-          ref={(titleInput) => { this.titleInput = titleInput }}
+          ref={(input) => { this.titleInput = input }}
         />
         <SolidButton
           onPress={() => {
-            onSubmit()
             this.titleInput.blur()
+            onSubmit()
           }}
           disabled={title === ''}
           text='Submit'
