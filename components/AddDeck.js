@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import Button from './Button'
+import SolidButton from './SolidButton'
 import colors from '../utils/colors'
 
 class AddDeck extends React.Component {
@@ -17,7 +17,7 @@ class AddDeck extends React.Component {
           value={title}
           onChangeText={onTitleChange}
         />
-        <Button
+        <SolidButton
           onPress={onSubmit}
           disabled={title === ''}
           text='Submit'

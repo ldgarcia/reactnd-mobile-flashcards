@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { getNavigationParam } from '../utils/navigation'
 import QuizItem from '../components/QuizItem'
 import QuizResults from '../components/QuizResults'
@@ -44,9 +45,22 @@ class QuizContainer extends React.Component {
     }))
   }
 
+  handleRestart = () => {
+    this.setState({
+      currentCardIndex: 0,
+      currentCardSide: 'question',
+      correctAnswers: 0,
+      incorrectAnswers: 0,
+    })
+  }
+
+  handleBack = () => {
+    this.props.navigation.dispatch(NavigationActions.back({key: null}))
+  }
+
   render() {
     const { currentCardIndex } = this.state
-    const { deck } = this.props
+    const { deck, navigation } = this.props
     const { questions } = deck
     if (currentCardIndex < questions.length) {
       return (
@@ -61,6 +75,9 @@ class QuizContainer extends React.Component {
     }
     return (
       <QuizResults
+        onRestart={this.handleRestart}
+        onBack={this.handleBack}
+        navigation={navigation}
         {...this.state}
       />
     )

@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import colors from '../utils/colors'
 
-function Button({onPress, disabled, text, additionalStyles=[]}) {
+function SolidButton({onPress, disabled, text, additionalStyles=[]}) {
   return (
     <TouchableOpacity
-      style={[styles.button, disabled ? styles.disabledButton : styles.enabledButton, ...additionalStyles]}
+      style={[styles.button, disabled ? styles.disabledSolidButton : styles.enabledSolidButton, ...additionalStyles]}
       onPress={onPress}
       disabled={disabled}
     >
@@ -16,7 +16,7 @@ function Button({onPress, disabled, text, additionalStyles=[]}) {
   )
 }
 
-Button.defaultProps = {
+SolidButton.defaultProps = {
   disabled: false,
 }
 
@@ -25,17 +25,16 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 20,
     borderRadius: 5,
-    borderWidth: 1,
   },
-  enabledButton: {
-    borderColor: colors.blue,
+  enabledSolidButton: {
+    backgroundColor: colors.blue,
   },
-  disabledButton: {
-    borderColor: colors.darkGray,
+  disabledSolidButton: {
+    backgroundColor: colors.gray,
   },
   text: {
     fontSize: 24,
-    color: colors.blue,
+    color: colors.white,
   },
   disabledText: {
     fontSize: 24,
@@ -43,4 +42,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Button
+export default SolidButton

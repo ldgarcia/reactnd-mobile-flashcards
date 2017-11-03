@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, Alert, View } from 'react-native'
 import Button from './Button'
+import SolidButton from './SolidButton'
 import colors from '../utils/colors'
 
 class Deck extends React.Component {
@@ -15,21 +16,20 @@ class Deck extends React.Component {
         <Text style={styles.cardCount}>
           {questions.length} {questions.length !== 1 ? 'cards' : 'card'}
         </Text>
-        <TouchableOpacity
-          style={[styles.button, styles.addCardButton]}
+        <Button
+          text='Add Card'
           onPress={() => navigation.navigate(
                           'AddCard',
                           { title, },
                   )}
-        >
-          <Text style={styles.addCardButtonText}>Add Card</Text>
-        </TouchableOpacity>
-        <Button
+          additionalStyles={[styles.button]}
+        />
+        <SolidButton
+          text='Start Quiz'
           onPress={() => navigation.navigate(
                           'Quiz',
                           { title, },
                   )}
-          text='Start Quiz'
           disabled={questions.length === 0}
           additionalStyles={[styles.button]}
         />
@@ -61,21 +61,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '80%',
     alignItems: 'center',
-  },
-  addCardButton: {
-    borderColor: colors.blue,
-    borderWidth: 1,
-  },
-  startQuizButton: {
-    backgroundColor: colors.blue,
-  },
-  addCardButtonText: {
-    fontSize: 24,
-    color: colors.blue,
-  },
-  startQuizButtonText: {
-    fontSize: 24,
-    color: colors.white,
   },
   input: {
     height: 60,

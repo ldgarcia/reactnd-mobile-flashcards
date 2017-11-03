@@ -1,10 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import Button from './Button'
+import SolidButton from './SolidButton'
 import colors from '../utils/colors'
 
 class QuizResults extends React.Component {
   render() {
-    const { correctAnswers, incorrectAnswers } = this.props
+    const { correctAnswers, incorrectAnswers, onRestart, onBack, navigation, } = this.props
     const score = Math.round(correctAnswers / (correctAnswers+incorrectAnswers) * 100.0)
     return (
       <View style={styles.container}>
@@ -17,6 +19,16 @@ class QuizResults extends React.Component {
         <Text style={styles.subtitle}>
           Correct: {correctAnswers} | Incorrect: {incorrectAnswers}
         </Text>
+        <Button
+          text='Back to Deck'
+          additionalStyles={[styles.button]}
+          onPress={onBack}
+        />
+        <SolidButton
+          text='Restart Quiz'
+          additionalStyles={[styles.button]}
+          onPress={onRestart}
+        />
       </View>
     )
   }
@@ -41,7 +53,14 @@ const styles = StyleSheet.create({
   },
   badScore: {
     color: colors.red,
-  }
+  },
+  button: {
+    padding: 10,
+    marginTop: 20,
+    borderRadius: 5,
+    width: '80%',
+    alignItems: 'center',
+  },
 })
 
 export default QuizResults

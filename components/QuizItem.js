@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import SolidButton from './SolidButton'
 import colors from '../utils/colors'
 
 class QuizItem extends React.Component {
@@ -17,22 +18,20 @@ class QuizItem extends React.Component {
         <TouchableOpacity
           onPress={onFlip}
         >
-          <Text style={styles.flipButtonText}>
+          <Text style={styles.flipSolidButtonText}>
             {currentCardSide === 'question' ? 'View Answer' : 'View Question'}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.correctButton]}
+        <SolidButton
+          text='Correct'
+          additionalStyles={[styles.button, styles.correctSolidButton]}
           onPress={onCorrect}
-        >
-          <Text style={styles.submitText}>Correct</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.incorrectButton]}
+        />
+        <SolidButton
+          text='Incorrect'
+          additionalStyles={[styles.button, styles.incorrectSolidButton]}
           onPress={onIncorrect}
-        >
-          <Text style={styles.submitText}>Incorrect</Text>
-        </TouchableOpacity>
+        />
       </View>
     )
   }
@@ -65,17 +64,13 @@ const styles = StyleSheet.create({
     width: '80%',
     alignItems: 'center',
   },
-  correctButton: {
+  correctSolidButton: {
     backgroundColor: colors.green,
   },
-  incorrectButton: {
+  incorrectSolidButton: {
     backgroundColor: colors.red,
   },
-  submitText: {
-    fontSize: 24,
-    color: colors.white,
-  },
-  flipButtonText: {
+  flipSolidButtonText: {
     fontSize: 20,
     color: colors.blue,
   },
