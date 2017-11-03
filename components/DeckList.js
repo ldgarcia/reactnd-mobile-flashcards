@@ -8,10 +8,11 @@ class DeckList extends React.Component {
     const { decks } = this.props
     return (
       <FlatList
+        contentContainerStyle={styles.container}
         data={decks.sort((a, b) => a.title < b.title)}
         renderItem={this.renderDeck}
-        contentContainerStyle={styles.container}
         keyExtractor={(item, index) => item.title}
+        ListEmptyComponent={this.renderEmpty}
       />
     )
   }
@@ -35,14 +36,19 @@ class DeckList extends React.Component {
       </TouchableOpacity>
     )
   }
+
+  renderEmpty = () => (
+    <View style={[styles.container, {alignItems: 'center',}]}>
+      <Text style={styles.noDecksText}>
+        You have no decks yet
+      </Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: colors.white,
-    justifyContent: 'center',
-    alignItems: 'stretch',
   },
   card: {
     backgroundColor: colors.blue,
@@ -55,6 +61,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     color: colors.white,
+  },
+  noDecksText: {
+    fontSize: 24,
+    color: colors.darkGray,
   },
   cardCount: {
     fontSize: 18,
