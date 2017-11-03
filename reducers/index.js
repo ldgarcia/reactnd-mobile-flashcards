@@ -3,7 +3,6 @@ import * as types from '../actions/types'
 function decks(decks = {}, action) {
   switch(action.type) {
     case types.ADD_CARD:
-      console.log('ADD_CARD')
       const deck = decks[action.title]
       return {
         ...decks,
