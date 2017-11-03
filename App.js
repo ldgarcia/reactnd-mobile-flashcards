@@ -10,7 +10,7 @@ function App() {
   return (
     <Provider store={configureStore()}>
       <View style={{flex: 1}}>
-        <StatusBar backgroundColor={colors.blue} />
+        <StatusBar backgroundColor={colors.white} />
         <MainNavigator />
       </View>
     </Provider>
