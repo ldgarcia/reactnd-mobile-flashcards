@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import SubmitButton from './SubmitButton'
 import colors from '../utils/colors'
 
 class AddCard extends React.Component {
   render() {
-    const { onQuestionChange, onAnswerChange, onSubmit } = this.props
+    const { question, answer, onQuestionChange, onAnswerChange, onSubmit } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
@@ -13,6 +14,7 @@ class AddCard extends React.Component {
         <TextInput
           style={styles.input}
           placeholder='Enter question'
+          value={question}
           onChangeText={onQuestionChange}
         />
         <Text style={styles.title}>
@@ -21,14 +23,13 @@ class AddCard extends React.Component {
         <TextInput
           style={styles.input}
           placeholder='Enter answer'
+          value={answer}
           onChangeText={onAnswerChange}
         />
-        <TouchableOpacity
-          style={styles.submitButton}
+        <SubmitButton
           onPress={onSubmit}
-        >
-          <Text style={styles.submitText}>Submit</Text>
-        </TouchableOpacity>
+          disabled={question === '' || answer === ''}
+        />
       </View>
     )
   }
@@ -45,16 +46,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: colors.darkGray,
     textAlign: 'center',
-  },
-  submitButton: {
-    padding: 10,
-    marginTop: 20,
-    backgroundColor: colors.blue,
-    borderRadius: 5,
-  },
-  submitText: {
-    fontSize: 24,
-    color: colors.white,
   },
   input: {
     height: 60,

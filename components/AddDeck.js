@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import SubmitButton from './SubmitButton'
 import colors from '../utils/colors'
 
 class AddDeck extends React.Component {
   render() {
-    const { onTitleChange, onSubmit } = this.props
+    const { title, onTitleChange, onSubmit } = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
@@ -13,14 +14,13 @@ class AddDeck extends React.Component {
         <TextInput
           style={styles.input}
           placeholder='Enter title'
+          value={title}
           onChangeText={onTitleChange}
         />
-        <TouchableOpacity
-          style={styles.submitButton}
+        <SubmitButton
           onPress={onSubmit}
-        >
-          <Text style={styles.submitText}>Submit</Text>
-        </TouchableOpacity>
+          disabled={title === ''}
+        />
       </View>
     )
   }
@@ -38,11 +38,20 @@ const styles = StyleSheet.create({
     color: colors.darkGray,
     textAlign: 'center',
   },
-  submitButton: {
+  button: {
     padding: 10,
     marginTop: 20,
-    backgroundColor: colors.blue,
     borderRadius: 5,
+  },
+  submitButton: {
+    backgroundColor: colors.blue,
+  },
+  disabledSubmitButton: {
+    backgroundColor: colors.gray,
+  },
+  disabledSubmitText: {
+    fontSize: 24,
+    color: colors.darkGray,
   },
   submitText: {
     fontSize: 24,

@@ -26,22 +26,12 @@ class AddCardContainer extends React.Component {
     const { question, answer } = this.state
     const { title, addCard, navigation } = this.props
 
-    if (question === '') {
-      Alert.alert(
-        'Error',
-        'Please enter a question',
-      )
-    }
-    else if (answer === '') {
-      Alert.alert(
-        'Error',
-        'Please enter an answer',
-      )
-    }
-    else {
-      addCard(title, question, answer)
-      navigation.dispatch(NavigationActions.back({key: null}))
-    }
+    addCard(title, question, answer)
+    this.setState({
+      question: '',
+      answer: '',
+    })
+    navigation.dispatch(NavigationActions.back({key: null}))
   }
 
   handleQuestionChange = (question) => {
@@ -58,6 +48,7 @@ class AddCardContainer extends React.Component {
         onSubmit={this.handleSubmit}
         onQuestionChange={this.handleQuestionChange}
         onAnswerChange={this.handleAnswerChange}
+        {...this.state}
       />
     )
   }

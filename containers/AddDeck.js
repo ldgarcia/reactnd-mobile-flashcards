@@ -16,16 +16,19 @@ class AddDeckContainer extends React.Component {
 
   handleSubmit = () => {
     const { title } = this.state
-    const { addDeck } = this.props
+    const { decks, addDeck } = this.props
 
-    if (title === '') {
+    if (title in decks) {
       Alert.alert(
         'Error',
-        'Please enter a title',
+        'A deck with this title already exists!',
       )
     }
     else {
       addDeck(title)
+      this.setState({
+        title: '',
+      })
       this.props.navigation.dispatch(NavigationActions.back({key: 'AddDeck'}))
     }
   }
@@ -39,12 +42,15 @@ class AddDeckContainer extends React.Component {
       <AddDeck
         onSubmit={this.handleSubmit}
         onTitleChange={this.handleTitleChange}
+        {...this.state}
       />
     )
   }
 }
 
-const mapStateToProps = (decks) => ({})
+const mapStateToProps = (decks) => ({
+  decks,
+})
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
