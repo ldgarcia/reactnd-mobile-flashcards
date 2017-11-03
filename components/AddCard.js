@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import SubmitButton from './SubmitButton'
+import Button from './Button'
 import colors from '../utils/colors'
 
 class AddCard extends React.Component {
@@ -26,9 +26,10 @@ class AddCard extends React.Component {
           value={answer}
           onChangeText={onAnswerChange}
         />
-        <SubmitButton
+        <Button
           onPress={onSubmit}
           disabled={question === '' || answer === ''}
+          text='Submit'
         />
       </View>
     )

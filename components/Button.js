@@ -2,14 +2,16 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import colors from '../utils/colors'
 
-function SubmitButton({onPress, disabled}) {
+function Button({onPress, disabled, text, additionalStyles=[]}) {
   return (
     <TouchableOpacity
-      style={[styles.button, disabled ? styles.disabledButton : styles.submitButton]}
+      style={[styles.button, disabled ? styles.disabledButton : styles.enabledButton, ...additionalStyles]}
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={disabled ? styles.disabledText : styles.text}>Submit</Text>
+      <Text style={disabled ? styles.disabledText : styles.text}>
+        {text}
+      </Text>
     </TouchableOpacity>
   )
 }
@@ -20,20 +22,20 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 5,
   },
-  submitButton: {
+  enabledButton: {
     backgroundColor: colors.blue,
   },
   disabledButton: {
     backgroundColor: colors.gray,
   },
-  disabledText: {
-    fontSize: 24,
-    color: colors.darkGray,
-  },
   text: {
     fontSize: 24,
     color: colors.white,
   },
+  disabledText: {
+    fontSize: 24,
+    color: colors.darkGray,
+  },
 })
 
-export default SubmitButton
+export default Button
