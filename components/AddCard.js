@@ -7,7 +7,9 @@ class AddCard extends React.Component {
   render() {
     const { question, answer, onQuestionChange, onAnswerChange, onSubmit } = this.props
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+      >
         <Text style={styles.title}>
           Question
         </Text>
@@ -16,6 +18,7 @@ class AddCard extends React.Component {
           placeholder='Enter question'
           value={question}
           onChangeText={onQuestionChange}
+          ref={(questionInput) => { this.questionInput = questionInput }}
         />
         <Text style={styles.title}>
           Answer
@@ -25,9 +28,14 @@ class AddCard extends React.Component {
           placeholder='Enter answer'
           value={answer}
           onChangeText={onAnswerChange}
+          ref={(answerInput) => { this.answerInput = answerInput }}
         />
         <SolidButton
-          onPress={onSubmit}
+          onPress={() => {
+            onSubmit()
+            this.questionInput.blur()
+            this.answerInput.blur()
+          }}
           disabled={question === '' || answer === ''}
           text='Submit'
         />

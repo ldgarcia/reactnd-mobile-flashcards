@@ -7,7 +7,9 @@ class AddDeck extends React.Component {
   render() {
     const { title, onTitleChange, onSubmit } = this.props
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+      >
         <Text style={styles.title}>
           What is the title of your new deck?
         </Text>
@@ -16,9 +18,13 @@ class AddDeck extends React.Component {
           placeholder='Enter title'
           value={title}
           onChangeText={onTitleChange}
+          ref={(titleInput) => { this.titleInput = titleInput }}
         />
         <SolidButton
-          onPress={onSubmit}
+          onPress={() => {
+            onSubmit()
+            this.titleInput.blur()
+          }}
           disabled={title === ''}
           text='Submit'
         />
