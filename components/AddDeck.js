@@ -14,7 +14,6 @@ class AddDeck extends React.Component {
           style={styles.input}
           placeholder='Enter title'
           onChangeText={onTitleChange}
-          onSubmitEditing={onSubmit}
         />
         <TouchableOpacity
           style={styles.submitButton}
