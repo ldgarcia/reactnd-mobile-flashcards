@@ -24,14 +24,6 @@ class App extends React.Component {
       </Provider>
     )
   }
-
-  listenForNotifications = () => {
-    Notifications.addListener(notification => {
-      if (notification.origin === 'received' && Platform.OS === 'ios') {
-        Alert.alert(notification.title, notification.body);
-      }
-    })
-  }
 }
 
 export default App
