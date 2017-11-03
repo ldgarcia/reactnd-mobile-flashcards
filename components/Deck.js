@@ -23,12 +23,17 @@ class Deck extends React.Component {
         >
           <Text style={styles.addCardButtonText}>Add Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.button, styles.startQuizButton]}
-          onPress={() => {}}
-        >
-          <Text style={styles.startQuizButtonText}>Start Quiz</Text>
-        </TouchableOpacity>
+        { questions.length > 0 && (
+          <TouchableOpacity
+            style={[styles.button, styles.startQuizButton]}
+            onPress={() => navigation.navigate(
+                            'Quiz',
+                            { title, },
+                    )}
+          >
+            <Text style={styles.startQuizButtonText}>Start Quiz</Text>
+          </TouchableOpacity>
+        )}
       </View>
     )
   }
@@ -55,6 +60,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 20,
     borderRadius: 5,
+    width: '80%',
+    alignItems: 'center',
   },
   addCardButton: {
     borderColor: colors.blue,
